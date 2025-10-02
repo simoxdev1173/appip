@@ -11,6 +11,8 @@ import {
   MobileNavMenu,
 } from "./ui/resizable-navbar";
 import { useState } from "react";
+import { motion } from "motion/react";
+import { HeroHighlight ,Highlight} from "./ui/hero-highlight";
 
 export function NavbarH() {
   const navItems = [
@@ -86,23 +88,32 @@ export function NavbarH() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-      <DummyContent />
+      <Hero />
 
       {/* Navbar */}
     </div>
   );
 }
 
-const DummyContent = () => {
+const Hero = () => {
   return (
-    <div className="container mx-auto p-8 pt-24">
-      <h1 className="mb-4 text-center text-3xl font-bold">
-        المنصة الصناعية العربية: نافذتك للتكامل الصناعي والتجاري
-      </h1>
-      <p className="mb-10 text-center text-sm text-zinc-500">
-       منصة رسمية تجمع بين العروض والطلبات الصناعية في الدول العربية، لتعزيز التعاون، تبادل الفرص، ودعم سلاسل الإمداد والتوريد العربية.
-      </p>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+    <div className="container mx-auto p-8 pt-24 flex flex-col items-center text-center">
+    
+            <h1 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white leading-relaxed">
+            المنصة الصناعية العربية:{" "}
+            <Highlight>
+            <span className="text-black dark:text-white">
+                            نافذتك للتكامل الصناعي والتجاري
+                </span>
+            </Highlight>
+            
+            </h1>
+            <p className="mb-10 text-sm md:text-lg text-zinc-500 dark:text-zinc-400">
+            منصة رسمية تجمع بين العروض والطلبات الصناعية في الدول العربية،
+            لتعزيز التعاون، تبادل الفرص، ودعم سلاسل الإمداد والتوريد العربية.
+            </p>
+      
+      {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-4"> */}
         {/* {[
           {
             id: 1,
@@ -182,7 +193,7 @@ const DummyContent = () => {
             <h2 className="text-xl font-medium">{box.title}</h2>
           </div>
         ))} */}
-        <div className={"md:col-span-1 h-60 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-lg p-4 shadow-sm"}>
+        {/* <div className={"md:col-span-1 h-60 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-lg p-4 shadow-sm"}>
             <h1>
                 Stats
             </h1>
@@ -190,7 +201,7 @@ const DummyContent = () => {
         <div className={"md:col-span-3 h-60 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-lg p-4 shadow-sm"}>
 
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
