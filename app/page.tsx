@@ -1,10 +1,14 @@
 import Image from "next/image";
-import { NavbarDemo } from "./components/Navbardemo";
+import { NavbarH } from "./components/Navbar";
+import { BackgroundBeamsWithCollision } from "./components/ui/background-beams-with-collision";
 
 export default function Home() {
   return (
-   <main>
-    <NavbarDemo/>
-    </main>
+   
+    <BackgroundBeamsWithCollision>
+      <main>
+        <NavbarH />
+      </main>
+    </BackgroundBeamsWithCollision>
   );
 }
