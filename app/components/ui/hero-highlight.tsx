@@ -129,10 +129,10 @@ export const Highlight = ({
         backgroundPosition: "left center",
         display: "inline",
       }}
-      className={cn(
-        `relative inline-block rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 px-1 pb-1 dark:from-indigo-500 dark:to-purple-500`,
-        className,
-      )}
+    className={cn(
+  `relative inline-block rounded-lg bg-gradient-to-r from-[#598392] to-[#598392] px-1 pb-1 dark:from-[#598392] dark:to-[#598392]`,
+  className,
+)}
     >
       {children}
     </motion.span>

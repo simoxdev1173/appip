@@ -33,7 +33,7 @@ export function NavbarH() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full ">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
@@ -99,16 +99,16 @@ const Hero = () => {
   return (
     <div className="container mx-auto p-8 pt-24 flex flex-col items-center text-center">
     
-            <h1 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white leading-relaxed">
+            <h1 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-bold text-main leading-relaxed">
             المنصة الصناعية العربية:{" "}
             <Highlight>
-            <span className="text-black dark:text-white">
+            <span className="text-white">
                             نافذتك للتكامل الصناعي والتجاري
                 </span>
             </Highlight>
             
             </h1>
-            <p className="mb-10 text-sm md:text-lg text-zinc-500 dark:text-zinc-400">
+            <p className="mb-10 text-sm md:text-lg text-main">
             منصة رسمية تجمع بين العروض والطلبات الصناعية في الدول العربية،
             لتعزيز التعاون، تبادل الفرص، ودعم سلاسل الإمداد والتوريد العربية.
             </p>
