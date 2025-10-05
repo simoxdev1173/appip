@@ -117,7 +117,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
                   "0 8px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.08) inset",
               }}
               whileTap={{ scale: 0.98, y: 0 }}
-              className="mt-6 px-5 py-2.5 w-fit mx-auto sm:text-sm text-black bg-white h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] hover:bg-white"
+              className="mt-6 px-5 py-2.5 w-fit cursor-pointer mx-auto sm:text-sm text-black bg-white h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] hover:bg-white"
             >
               {button}
             </motion.button>
@@ -139,7 +139,7 @@ const CarouselControl = ({ type, title, handleClick }: CarouselControlProps) => 
     <motion.button
       whileHover={{ y: -2, scale: 1.06 }}
       whileTap={{ scale: 0.98, y: 0 }}
-      className={`w-11 h-11 flex items-center mx-2 justify-center bg-neutral-200/80 dark:bg-neutral-800/80 rounded-full ring-1 ring-white/10 backdrop-blur-sm
+      className={`w-11 h-11 flex items-center cursor-pointer mx-2 justify-center bg-neutral-200/80 dark:bg-neutral-800/80 rounded-full ring-1 ring-white/10 backdrop-blur-sm
       ${type === "previous" ? "rotate-180" : ""}`}
       title={title}
       onClick={handleClick}

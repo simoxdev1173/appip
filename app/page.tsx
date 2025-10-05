@@ -4,12 +4,15 @@ import { Highlight } from "./components/ui/hero-highlight";
 import { Sectioncarousel } from "./components/Sectioncarousel";
 import Clients from "./components/Clients";
 import { FeatureSection } from "./FeatureSection";
+import { SectionFeatures } from "./components/SectionFeatures";
+import { NavbarSecondary } from "./components/SecondaryNavbar";
 
 export default function Home() {
   return (
     <main className="bg-background min-h-dvh">
       {/* Navbar at the very top */}
       <header>
+        <NavbarSecondary className="w-full"/>
         <NavbarH />
       </header>
 
@@ -19,7 +22,7 @@ export default function Home() {
           {/* Right column (hero) should appear FIRST on mobile */}
           <div className="order-1 md:order-2 md:col-span-2 rounded-lg p-4">
             <div className="container mx-auto p-6 md:p-8 flex flex-col items-center justify-center text-center">
-              <h1 className="mb-5 text-4xl md:text-5xl lg:text-6xl font-bold text-main leading-tight">
+              <h1 className="mb-5 text-2xl md:text-3xl lg:text-4xl font-bold text-main leading-tight">
                 المنصة الصناعية العربية:{" "}
                 <Highlight>
                   <span className="text-white">
@@ -28,7 +31,7 @@ export default function Home() {
                 </Highlight>
               </h1>
 
-              <p className="mb-8 md:mb-12 text-base md:text-xl text-main leading-relaxed">
+              <p className="mb-8 md:mb-12 text-base md:text-xl font-bold text-main leading-relaxed">
                 منصة رسمية تجمع بين العروض والطلبات الصناعية في الدول العربية،
                 لتعزيز التعاون، تبادل الفرص، ودعم سلاسل الإمداد والتوريد العربية.
               </p>
@@ -55,14 +58,14 @@ export default function Home() {
           </div>
         </section>
       </div>
-
-      <section className="mt-4 w-full bg-foreground">
+       <section className="mt-4 w-full bg-foreground">
+        <SectionFeatures />
+      </section>
+      {/* <section className="mt-4 w-full ">
         <Clients />
-      </section>
+      </section> */}
 
-      <section className="mt-4 w-full">
-        {/* <FeatureSection/> */}
-      </section>
+     
     </main>
   );
 }

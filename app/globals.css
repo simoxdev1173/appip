@@ -8,37 +8,15 @@
 @theme inline {
   --color-main: #598392;
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --font-sans: var(--font-el-messiri), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
   --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
    @keyframes scroll {
     to {
       transform: translate(calc(-50% - 0.5rem));
     }
   }
-}
-/* scrolling marquee base */
-.scroller{
-  --animation-duration: 40s;
-  --animation-direction: normal; /* normal | reverse */
-  --gap: 4rem; /* matches gap-16 (16 * .25rem) */
-}
-
-/* use the CSS var values for timing + direction */
-.animate-scroll{
-  animation: scroll var(--animation-duration) linear infinite;
-  animation-direction: var(--animation-direction);
-}
-
-/* duplicate width worth of items scrolls left by 50% + the gap */
-@keyframes scroll{
-  to { transform: translateX(calc(-50% - var(--gap))); }
-}
-
-/* cross-browser masking (optional but recommended) */
-.scroller {
-  -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
-  mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,6 +29,6 @@
 body {
   background: var(--background);
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:var(--font-mono);
   padding: 10px;
 }

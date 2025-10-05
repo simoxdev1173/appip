@@ -14,9 +14,11 @@ import { useState } from "react";
 
 export function NavbarH() {
   const navItems = [
-    { name: "Features", link: "#features" },
-    { name: "Pricing", link: "#pricing" },
-    { name: "Contact", link: "#contact" },
+    { name: "الرئيسية", link: "#الرئيسية" },
+    { name: "الطلبات", link: "#الطلبات" },
+    { name: "العروض", link: "#العروض" },
+    { name: "المتجر", link: "#المتجر" },
+    { name: "الفرص الإستثمارية", link: "#الفرص-الإستثمارية" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,10 +29,10 @@ export function NavbarH() {
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
-          <NavItems items={navItems} />
+          <NavItems className="font-bold" items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <NavbarButton variant="secondary" className="border-black border-2">خدمة العملاء</NavbarButton>
+            <NavbarButton variant="primary">تسجيل الدخول</NavbarButton>
           </div>
         </NavBody>
 
@@ -53,7 +55,7 @@ export function NavbarH() {
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
+                className="relative text-neutral-600 font-bold dark:text-neutral-300"
               >
                 <span className="block">{item.name}</span>
               </a>
@@ -64,15 +66,14 @@ export function NavbarH() {
                 variant="primary"
                 className="w-full"
               >
-                Login
+                تسجيل الدخول
               </NavbarButton>
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
               >
-                Book a call
-              </NavbarButton>
+خدمة العملاء              </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>
