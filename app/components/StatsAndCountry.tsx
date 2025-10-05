@@ -266,13 +266,12 @@ function CountryCard({
   const order = useMemo(() => (ext ? [ext, "jpg", "png"] : ["webp", "jpg", "png"]), [ext]);
   const [idx, setIdx] = useState(0);
   const [hasImage, setHasImage] = useState(true);
-  const src = `/countries/${slug}.${order[Math.min(idx, order.length - 1)]}`;
+  const src = `/countries/${slug}.png`;
 
   const handleError = () => {
     setIdx((i) => {
       const next = i + 1;
       if (next < order.length) return next;
-      // No working image extension – fallback to placeholder
       setHasImage(false);
       return i;
     });
@@ -305,7 +304,6 @@ function CountryCard({
       {/* Overlay to darken for text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
 
-      {/* Country name — crisp, white, bold, fixed position (bottom-end) */}
       <div className="absolute inset-0 flex items-end justify-end p-3">
         <span
           className="px-3 py-1 rounded-md text-white font-extrabold text-base md:text-lg drop-shadow-md select-none bg-black/30 backdrop-blur-[1px]"
@@ -316,8 +314,3 @@ function CountryCard({
     </div>
   );
 }
-
-// -------------------- Tailwind helpers --------------------
-// Add the following to your globals if not present:
-// .animate-scroll { animation: scroll var(--animation-duration, 28s) linear infinite; }
-// @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }

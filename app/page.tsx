@@ -20,10 +20,9 @@ export default function Home() {
 
       {/* Centered page container with nice horizontal padding */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6">
-        <section className="grid grid-cols-1 gap-6 md:grid-cols-4 items-center min-h-[60vh]">
-          {/* Right column (hero) should appear FIRST on mobile */}
-          <div className="order-1 md:order-2 md:col-span-2 rounded-lg p-4">
-            <div className="container mx-auto p-6 md:p-8 flex flex-col items-center justify-center text-center">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch min-h-[60vh]">
+          <div className="order-1 md:order-2 h-full rounded-lg p-4 flex  md:mt-0">
+             <div className="container mx-auto p-6 md:p-8 flex flex-col items-center justify-center text-center m-auto">
               <h1 className="mb-5 text-2xl md:text-3xl lg:text-4xl font-bold text-main leading-tight">
                 المنصة الصناعية العربية:{" "}
                 <Highlight>
@@ -56,7 +55,7 @@ export default function Home() {
           </div>
 
           {/* Left column: carousel (shows SECOND on mobile) */}
-          <div className="order-2 md:order-1 md:col-span-2 rounded-lg p-4">
+         <div className="order-2 md:order-1 h-full rounded-lg p-4">
             <Sectioncarousel />
           </div>
         </section>
