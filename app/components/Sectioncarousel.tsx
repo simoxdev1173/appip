@@ -1,28 +1,27 @@
 "use client";
-
 import Carousel from "./ui/carousel";
 export function Sectioncarousel() {
   const slideData = [
     {
       title: "تعدين واستغلال المحاجر",
       button: "استكشف الطلبات والعروض",
-      src: "./gold.webp",
+      src: "/gold.webp",
     },
     {
       title: "تعدين الفحم والليغنيت",
       button: "استكشف الطلبات والعروض",
-      src: "./track.webp",
+      src: "/track.webp",
     },
     {
       title: "المنتجات الغدائية",
       button: "استكشف الطلبات والعروض",
-      src: "./groceries.webp",
+      src: "/groceries.webp",
     },
 
     {
       title: "المشروبات",
       button: "استكشف الطلبات والعروض",
-      src: "./drinks.webp",
+      src: "/drinks.webp",
     },
   ];
   return (
