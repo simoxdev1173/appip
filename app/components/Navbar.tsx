@@ -11,29 +11,18 @@ import {
   MobileNavMenu,
 } from "./ui/resizable-navbar";
 import { useState } from "react";
-import { motion } from "motion/react";
-import { HeroHighlight ,Highlight} from "./ui/hero-highlight";
 
 export function NavbarH() {
   const navItems = [
-    {
-      name: "الطلبات",
-      link: "#features",
-    },
-    {
-      name: "العروض",
-      link: "#pricing",
-    },
-    {
-      name: "المتجر",
-      link: "#contact",
-    },
+    { name: "Features", link: "#features" },
+    { name: "Pricing", link: "#pricing" },
+    { name: "Contact", link: "#contact" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative w-full ">
+    <div className="relative w-full">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
@@ -88,120 +77,8 @@ export function NavbarH() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-      <Hero />
 
-      {/* Navbar */}
     </div>
   );
 }
 
-const Hero = () => {
-  return (
-    <div className="container mx-auto p-8 pt-24 flex flex-col items-center text-center">
-    
-            <h1 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-bold text-main leading-relaxed">
-            المنصة الصناعية العربية:{" "}
-            <Highlight>
-            <span className="text-white">
-                            نافذتك للتكامل الصناعي والتجاري
-                </span>
-            </Highlight>
-            
-            </h1>
-            <p className="mb-10 text-sm md:text-lg text-main">
-            منصة رسمية تجمع بين العروض والطلبات الصناعية في الدول العربية،
-            لتعزيز التعاون، تبادل الفرص، ودعم سلاسل الإمداد والتوريد العربية.
-            </p>
-      
-      {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-4"> */}
-        {/* {[
-          {
-            id: 1,
-            title: "The",
-            width: "md:col-span-1",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 2,
-            title: "First",
-            width: "md:col-span-2",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 3,
-            title: "Rule",
-            width: "md:col-span-1",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 4,
-            title: "Of",
-            width: "md:col-span-3",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 5,
-            title: "F",
-            width: "md:col-span-1",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 6,
-            title: "Club",
-            width: "md:col-span-2",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 7,
-            title: "Is",
-            width: "md:col-span-2",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 8,
-            title: "You",
-            width: "md:col-span-1",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 9,
-            title: "Do NOT TALK about",
-            width: "md:col-span-2",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-          {
-            id: 10,
-            title: "F Club",
-            width: "md:col-span-1",
-            height: "h-60",
-            bg: "bg-neutral-100 dark:bg-neutral-800",
-          },
-        ].map((box) => (
-          <div
-            key={box.id}
-            className={`${box.width} ${box.height} ${box.bg} flex items-center justify-center rounded-lg p-4 shadow-sm`}
-          >
-            <h2 className="text-xl font-medium">{box.title}</h2>
-          </div>
-        ))} */}
-        {/* <div className={"md:col-span-1 h-60 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-lg p-4 shadow-sm"}>
-            <h1>
-                Stats
-            </h1>
-        </div>
-        <div className={"md:col-span-3 h-60 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-lg p-4 shadow-sm"}>
-
-        </div>
-      </div> */}
-    </div>
-  );
-};
