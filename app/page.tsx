@@ -4,9 +4,11 @@ import { Highlight } from "./components/ui/hero-highlight";
 import { Sectioncarousel } from "./components/Sectioncarousel";
 import Clients from "./components/Clients";
 import { FeatureSection } from "./FeatureSection";
-import { SectionFeatures } from "./components/SectionFeatures";
+
 import { NavbarSecondary } from "./components/SecondaryNavbar";
 
+
+import StatsAndCountries from "./components/StatsAndCountry";
 export default function Home() {
   return (
     <main className="bg-background min-h-dvh">
@@ -59,7 +61,7 @@ export default function Home() {
         </section>
       </div>
        <section className="mt-4 w-full bg-foreground">
-        <SectionFeatures />
+        <StatsAndCountries />
       </section>
       {/* <section className="mt-4 w-full ">
         <Clients />
