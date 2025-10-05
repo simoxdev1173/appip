@@ -39,17 +39,18 @@ export default function Home() {
               </p>
 
               <div className="bg-white flex px-1 py-1 rounded-full border border-blue-500 overflow-hidden w-full max-w-xl mx-auto">
-                <input
-                  type="email"
-                  placeholder="البحث عن طلبات أو عروض"
-                  className="w-full outline-none text-main bg-white pl-10 text-base md:text-lg py-2"
-                />
-                <button
+                 <button
                   type="button"
-                  className="bg-[#124559] hover:bg-blue-700 transition-all text-white text-sm md:text-base rounded-full px-8 md:px-10 py-2.5 md:py-3"
+                  className="bg-[#124559] bg-[#0d3546] cursor-pointer transition-all text-white text-sm md:text-base rounded-full px-8 md:px-10 py-2.5 md:py-3"
                 >
                   لبحث
                 </button>
+                <input
+                  type="email"
+                  placeholder="البحث عن طلبات أو العروض"
+                  className="w-full outline-none text-main bg-white pl-10 text-base md:text-lg py-2"
+                />
+               
               </div>
             </div>
           </div>

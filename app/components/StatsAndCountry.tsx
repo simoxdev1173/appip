@@ -11,39 +11,27 @@ import {
   IconCurrencyDollar,
 } from "@tabler/icons-react";
 
-/* ================== Top KPI Grid ================== */
 
 type KpiItem = {
   title: string;
   value: number;
   icon: React.ReactNode;
-  badge?: string; // optional top-left label
+  badge?: string;
 };
 
 const KPI_DATA: KpiItem[] = [
   { title: "دولة عربية", value: 21, icon: <IconMap2 className="h-6 w-6" /> },
   { title: "معادن الطاقة النظيفة", value: 38, icon: <IconBolt className="h-6 w-6" /> },
   { title: "المعادن الصناعية", value: 53, icon: <IconBuildingFactory className="h-6 w-6" /> },
-  {
-    title: "موقع / مكمن",
-    value: 5574,
-    icon: <IconMapPin className="h-6 w-6" />,
-    badge: "المتوفر حاليا",
-  },
-  {
-    title: "الفرص الاستثمارية",
-    value: 162,
-    icon: <IconCurrencyDollar className="h-6 w-6" />,
-    badge: "المتاحة حاليا",
-  },
+  { title: "موقع / مكمن", value: 5574, icon: <IconMapPin className="h-6 w-6" />, badge: "المتوفر حاليا" },
+  { title: "الفرص الاستثمارية", value: 162, icon: <IconCurrencyDollar className="h-6 w-6" />, badge: "المتاحة حاليا" },
 ];
 
-/* ================== Countries Marquee ================== */
 
 type CountryItem = {
   name: string;
-  slug: string;                 // file name (no extension) inside /public/countries/
-  ext?: "webp" | "jpg" | "png"; // optional preferred extension
+  slug: string;
+  ext?: "webp" | "jpg" | "png";
 };
 
 const COUNTRIES: CountryItem[] = [
@@ -52,51 +40,102 @@ const COUNTRIES: CountryItem[] = [
   { name: "السعودية", slug: "saudi" },
   { name: "الإمارات", slug: "uae" },
   { name: "قطر", slug: "qatar" },
-  { name: "فلسطين", slug: "palestine" }, // 
+  { name: "فلسطين", slug: "palestine" },
 ];
 
-/* ================== Exported Section ================== */
 
-export default function StatsAndCountries({
-  className,
-}: {
-  className?: string;
-}) {
+export default function StatsAndCountries({ className }: { className?: string }) {
   return (
-    <section  className="w-full bg-foreground ">
-      {/* ====== KPI GRID (10 cols) ====== */}
+    <section className={`w-full bg-foreground pt-8 ${className ?? ""}`}>
+      {/* Title 1 */}
+      <motion.h1
+        className="mx-auto max-w-7xl px-4 mb-6 text-4xl font-bold text-main text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.6 }}
+      >
+        إحصائيات المنصة
+      </motion.h1>
+
       <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl p-4">
-        <h1 className="mb-6 text-4xl font-bold text-main text-center">
-          إحصائيات المنصة
-        </h1>
-        <div className="mb-8 mt-4 grid grid-cols-10 gap-4">
+        <motion.div
+          className="mb-8 mt-4 grid grid-cols-10 gap-4"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.35 }}
+          variants={{
+            hidden: { opacity: 1 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+            },
+          }}
+        >
           {KPI_DATA.map((item, idx) => (
-            <KpiTile  key={idx} item={item} />
+            <KpiTile key={idx} item={item} />
           ))}
-        </div>
+        </motion.div>
       </div>
+
+      {/* Title 2 */}
+      <motion.h1
+        className="mx-auto max-w-7xl px-4 mb-6 text-4xl font-bold text-main text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.6 }}
+      >
+        دول عربية مشتركة
+      </motion.h1>
 
       {/* ====== COUNTRIES MARQUEE ====== */}
-      <h1  className="mb-6 text-4xl font-bold text-main text-center">
-          دول عربية مشتركة
-        </h1>
-      <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl">
+      <motion.div
+        className="mx-auto w-[calc(100%-2rem)] max-w-7xl"
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{ duration: 0.6 }}
+      >
         <CountryMarquee countries={COUNTRIES} speed={40} />
-      </div>
+      </motion.div>
     </section>
   );
 }
 
-/* ================== Pieces ================== */
 
 function KpiTile({ item }: { item: KpiItem }) {
+  const tileRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = tileRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <motion.div
-      data-aos="fade-up"
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
+      ref={tileRef}
+      variants={{
+        hidden: { opacity: 0, y: 16, rotateX: 4 },
+        show: {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          transition: { type: "spring", stiffness: 200, damping: 24 },
+        },
+      }}
       className="relative col-span-10 md:col-span-5 lg:col-span-2"
     >
       {/* {item.badge && (
@@ -105,27 +144,70 @@ function KpiTile({ item }: { item: KpiItem }) {
         </span>
       )} */}
 
-      <div className="flex h-full flex-col items-center justify-center gap-6 rounded-xl border-2 border-black/10 bg-[#EFF6E0] p-8 text-black">
-        <div className="grid h-12 w-12 place-items-center rounded-xl bg-white/80 ring-1 ring-black/10 text-main">
-          {/* unified color — no rainbow */}
+      <motion.div
+        whileHover={{ y: -3 }}
+        transition={{ type: "spring", stiffness: 220, damping: 18 }}
+        className="flex h-full flex-col items-center justify-center gap-6 rounded-xl border-2 border-black/10 bg-[#EFF6E0] p-8 text-black"
+      >
+        <motion.div
+          className="grid h-12 w-12 place-items-center rounded-xl bg-white/80 ring-1 ring-black/10 text-main"
+          initial={{ scale: 0.9, rotate: -3, opacity: 0 }}
+          animate={inView ? { scale: 1, rotate: 0, opacity: 1 } : {}}
+          transition={{ type: "spring", stiffness: 260, damping: 18 }}
+        >
           {item.icon}
-        </div>
+        </motion.div>
+
         <div className="flex flex-col items-center gap-2">
-          {/* Latin digits */}
           <h4 className="text-3xl font-black text-main">
-            {item.value.toLocaleString("en-US")}
+            <CountUp to={item.value} start={inView} />
           </h4>
           <p className="whitespace-nowrap text-[#124559] font-bold">{item.title}</p>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
+}
+
+function CountUp({
+  to,
+  start,
+  duration = 1.2,
+}: {
+  to: number;
+  start: boolean;
+  duration?: number; // seconds
+}) {
+  const [val, setVal] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!start || started.current) return;
+    started.current = true;
+
+    let raf = 0;
+    let startTime: number | null = null;
+    const total = Math.max(duration, 0.2) * 1000;
+
+    const step = (t: number) => {
+      if (startTime == null) startTime = t;
+      const p = Math.min((t - startTime) / total, 1);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - p, 3);
+      setVal(Math.round(to * eased));
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [start, to, duration]);
+
+  return <>{val.toLocaleString("en-US")}</>;
 }
 
 /* ---- Marquee ---- */
 function CountryMarquee({
   countries,
-  speed = 28, // seconds per loop
+  speed = 28,
 }: {
   countries: CountryItem[];
   speed?: number;
@@ -133,7 +215,6 @@ function CountryMarquee({
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLUListElement>(null);
 
-  // Duplicate list once for infinite flow RTL → LTR (we translate left)
   useEffect(() => {
     if (!scrollerRef.current) return;
     const children = Array.from(scrollerRef.current.children);
@@ -145,11 +226,10 @@ function CountryMarquee({
     });
   }, []);
 
-  // Hook up CSS vars for speed/direction
   useEffect(() => {
     if (!containerRef.current) return;
     containerRef.current.style.setProperty("--animation-duration", `${speed}s`);
-    containerRef.current.style.setProperty("--animation-direction", "forwards"); // RTL: slide left
+    containerRef.current.style.setProperty("--animation-direction", "forwards");
   }, [speed]);
 
   return (
@@ -161,7 +241,7 @@ function CountryMarquee({
       >
         <ul
           ref={scrollerRef}
-          className="flex min-w-full w-max shrink-0 gap-4 p-3 animate-scroll"
+          className="flex min-w-full w-max shrink-0 gap-4 p-3 animate-scroll hover:[animation-play-state:paused]"
         >
           {countries.map((c, idx) => (
             <li
@@ -177,7 +257,6 @@ function CountryMarquee({
   );
 }
 
-/* ---- Country Card with looping flag & centered moving name ---- */
 function CountryCard({
   name,
   slug,
@@ -187,14 +266,12 @@ function CountryCard({
   slug: string;
   ext?: "webp" | "jpg" | "png";
 }) {
-  // smart extension fallback: try ext -> jpg -> png (or webp -> jpg -> png)
   const order = useMemo(() => (ext ? [ext, "jpg", "png"] : ["webp", "jpg", "png"]), [ext]);
   const [idx, setIdx] = useState(0);
-  const src = `/countries/${slug}.png`;
+  const src = `/countries/${slug}.${order[Math.min(idx, order.length - 1)]}`;
 
   return (
     <div className="relative h-full w-full">
-      {/* Looping flag (Ken Burns subtle scale/translate) */}
       <motion.div
         className="absolute inset-0"
         initial={{ scale: 1, x: 0, y: 0 }}
@@ -207,19 +284,17 @@ function CountryCard({
           fill
           className="object-cover"
           sizes="320px"
-          priority={false}
           onError={() => setIdx((i) => (i + 1 < order.length ? i + 1 : i))}
         />
       </motion.div>
 
-      {/* Darken bottom/top a bit for readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 
-      {/* Centered name that moves slowly */}
       <div className="absolute inset-0 flex items-end justify-end">
         <motion.span
-          className="px-3 py-1 rounded-full  text-white font-bold text-base md:text-lg"
-          initial={{ x: 0 }}
+          className="px-3 py-1 rounded-full text-white font-bold text-base md:text-lg backdrop-blur-sm"
+          initial={{ x: 0, opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           animate={{ x: [-8, 8, -8] }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         >
