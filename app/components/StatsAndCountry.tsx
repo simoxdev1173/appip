@@ -11,7 +11,7 @@ import {
   IconBusinessplan,
 } from "@tabler/icons-react";
 
-
+// -------------------- Types --------------------
 type KpiItem = {
   title: string;
   value: number;
@@ -19,20 +19,20 @@ type KpiItem = {
   badge?: string;
 };
 
-const KPI_DATA: KpiItem[] = [
-  { title: "دولة عربية", value: 21, icon: <IconMap2 className="h-6 w-6" /> },
-  { title:"المنتجات", value: 5321, icon: <IconShoppingCart className="h-6 w-6" /> },
-  { title: "المعادن الصناعية", value: 53, icon: <IconBuildingFactory className="h-6 w-6" /> },
-  { title: "منشأة", value: 5574, icon: <IconBuildings className="h-6 w-6" />, badge: "المتوفر حاليا" },
-  { title: "الفرص الاستثمارية", value: 162, icon: <IconBusinessplan className="h-6 w-6" />, badge: "المتاحة حاليا" },
-];
-
-
 type CountryItem = {
   name: string;
   slug: string;
   ext?: "webp" | "jpg" | "png";
 };
+
+// -------------------- Data --------------------
+const KPI_DATA: KpiItem[] = [
+  { title: "دولة عربية", value: 21, icon: <IconMap2 className="h-6 w-6" /> },
+  { title: "المنتجات", value: 5321, icon: <IconShoppingCart className="h-6 w-6" /> },
+  { title: "المعادن الصناعية", value: 53, icon: <IconBuildingFactory className="h-6 w-6" /> },
+  { title: "منشأة", value: 5574, icon: <IconBuildings className="h-6 w-6" />, badge: "المتوفر حاليا" },
+  { title: "الفرص الاستثمارية", value: 162, icon: <IconBusinessplan className="h-6 w-6" />, badge: "المتاحة حاليا" },
+];
 
 const COUNTRIES: CountryItem[] = [
   { name: "المغرب", slug: "morocco" },
@@ -43,7 +43,7 @@ const COUNTRIES: CountryItem[] = [
   { name: "فلسطين", slug: "palestine" },
 ];
 
-
+// -------------------- Component --------------------
 export default function StatsAndCountries({ className }: { className?: string }) {
   return (
     <section className={`w-full bg-foreground pt-8 ${className ?? ""}`}>
@@ -103,7 +103,6 @@ export default function StatsAndCountries({ className }: { className?: string })
   );
 }
 
-
 function KpiTile({ item }: { item: KpiItem }) {
   const tileRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -138,12 +137,6 @@ function KpiTile({ item }: { item: KpiItem }) {
       }}
       className="relative col-span-10 md:col-span-5 lg:col-span-2"
     >
-      {/* {item.badge && (
-        <span className="absolute left-0 top-0 z-10 bg-black/10 text-black/70 px-2 py-1 text-xs rounded-br">
-          {item.badge}
-        </span>
-      )} */}
-
       <motion.div
         whileHover={{ y: -3 }}
         transition={{ type: "spring", stiffness: 220, damping: 18 }}
@@ -192,8 +185,7 @@ function CountUp({
     const step = (t: number) => {
       if (startTime == null) startTime = t;
       const p = Math.min((t - startTime) / total, 1);
-      // easeOutCubic
-      const eased = 1 - Math.pow(1 - p, 3);
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
       setVal(Math.round(to * eased));
       if (p < 1) raf = requestAnimationFrame(step);
     };
@@ -214,16 +206,21 @@ function CountryMarquee({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLUListElement>(null);
+  const dupedRef = useRef(false);
 
+  // ✅ Prevent runaway duplication that created many blanks
   useEffect(() => {
-    if (!scrollerRef.current) return;
+    if (!scrollerRef.current || dupedRef.current) return;
     const children = Array.from(scrollerRef.current.children);
-    if (children.length && (children[0] as HTMLElement).dataset?.dup === "1") return;
+    if (!children.length) return;
+    const frag = document.createDocumentFragment();
     children.forEach((child) => {
       const clone = child.cloneNode(true) as HTMLElement;
       clone.dataset.dup = "1";
-      scrollerRef.current!.appendChild(clone);
+      frag.appendChild(clone);
     });
+    scrollerRef.current.appendChild(frag);
+    dupedRef.current = true;
   }, []);
 
   useEffect(() => {
@@ -268,7 +265,18 @@ function CountryCard({
 }) {
   const order = useMemo(() => (ext ? [ext, "jpg", "png"] : ["webp", "jpg", "png"]), [ext]);
   const [idx, setIdx] = useState(0);
+  const [hasImage, setHasImage] = useState(true);
   const src = `/countries/${slug}.${order[Math.min(idx, order.length - 1)]}`;
+
+  const handleError = () => {
+    setIdx((i) => {
+      const next = i + 1;
+      if (next < order.length) return next;
+      // No working image extension – fallback to placeholder
+      setHasImage(false);
+      return i;
+    });
+  };
 
   return (
     <div className="relative h-full w-full">
@@ -278,29 +286,38 @@ function CountryCard({
         animate={{ scale: [1, 1.06, 1], x: [0, -6, 0], y: [0, 4, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       >
-        <Image
-          src={src}
-          alt={name}
-          fill
-          className="object-cover"
-          sizes="320px"
-          onError={() => setIdx((i) => (i + 1 < order.length ? i + 1 : i))}
-        />
+        {hasImage ? (
+          <Image
+            src={src}
+            alt={name}
+            fill
+            className="object-cover"
+            sizes="320px"
+            onError={handleError}
+            priority={false}
+          />
+        ) : (
+          // Graceful fallback so you don't get empty/blank tiles
+          <div className="h-full w-full bg-gradient-to-br from-slate-300 to-slate-500" />
+        )}
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-t " />
+      {/* Overlay to darken for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
 
-      <div className="absolute inset-0 flex items-end justify-end">
-        <motion.span
-          className="px-3 py-1 rounded-full text-white font-bold text-base md:text-lg "
-          initial={{ x: 0, opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          animate={{ x: [-8, 8, -8] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+      {/* Country name — crisp, white, bold, fixed position (bottom-end) */}
+      <div className="absolute inset-0 flex items-end justify-end p-3">
+        <span
+          className="px-3 py-1 rounded-md text-white font-extrabold text-base md:text-lg drop-shadow-md select-none bg-black/30 backdrop-blur-[1px]"
         >
           {name}
-        </motion.span>
+        </span>
       </div>
     </div>
   );
 }
+
+// -------------------- Tailwind helpers --------------------
+// Add the following to your globals if not present:
+// .animate-scroll { animation: scroll var(--animation-duration, 28s) linear infinite; }
+// @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
