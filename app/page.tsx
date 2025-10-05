@@ -12,7 +12,7 @@ import StatsAndCountries from "./components/StatsAndCountry";
 export default function Home() {
   return (
     <main className="bg-background min-h-dvh">
-      {/* Navbar at the very top */}
+    {/* Navbar at the very top */}
       <header>
         <NavbarSecondary className="w-full"/>
         <NavbarH />
@@ -21,9 +21,9 @@ export default function Home() {
       {/* Centered page container with nice horizontal padding */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6">
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch min-h-[60vh]">
-          <div className="order-1 md:order-2 h-full rounded-lg p-4 flex  md:mt-0">
+          <div className="order-1 md:order-2 h-full rounded-lg p-4 flex  md:mt-5">
              <div className="container mx-auto p-6 md:p-8 flex flex-col items-center justify-center text-center m-auto">
-              <h1 className="mb-5 text-2xl md:text-3xl lg:text-4xl font-bold text-main leading-tight">
+              <h1 className="mb-5 text-4xl md:text-2xl lg:text-3xl font-bold text-main leading-tight">
                 المنصة الصناعية العربية:{" "}
                 <Highlight>
                   <span className="text-white">
@@ -32,9 +32,9 @@ export default function Home() {
                 </Highlight>
               </h1>
 
-              <p className="mb-8 md:mb-12 text-base md:text-xl font-bold text-main leading-relaxed">
+              <p className="mb-8 text-1xl md:mb-12  md:text-lg lg:text-1xl font-bold text-main leading-relaxed">
                 منصة رسمية تجمع بين العروض والطلبات الصناعية في الدول العربية،
-                لتعزيز التعاون، تبادل الفرص، ودعم سلاسل الإمداد والتوريد العربية.
+                لتعزيز التعاون، تبادل الفرص، ودعم سلاسل الإمداد والتوريد العربية
               </p>
 
               <div className="bg-white flex px-1 py-1 rounded-full border border-blue-500 overflow-hidden w-full max-w-xl mx-auto">
