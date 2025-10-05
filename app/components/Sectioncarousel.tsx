@@ -14,14 +14,15 @@ export function Sectioncarousel() {
       src: "./track.webp",
     },
     {
-      title: "تعدين واستغلال المحاجر",
+      title: "المنتجات الغدائية",
       button: "استكشف الطلبات والعروض",
-      src: "https://images.unsplash.com/photo-1590041794748-2d8eb73a571c?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      src: "./groceries.webp",
     },
+
     {
-      title: "همسات الصحراء",
+      title: "المشروبات",
       button: "استكشف الطلبات والعروض",
-      src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      src: "./drinks.webp",
     },
   ];
   return (

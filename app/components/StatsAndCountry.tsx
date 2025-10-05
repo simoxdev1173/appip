@@ -48,24 +48,11 @@ type CountryItem = {
 
 const COUNTRIES: CountryItem[] = [
   { name: "المغرب", slug: "morocco" },
-  { name: "الجزائر", slug: "algeria" },
-  { name: "تونس", slug: "tunisia" },
-  { name: "ليبيا", slug: "libya" },
   { name: "مصر", slug: "egypt" },
-  { name: "السودان", slug: "sudan" },
-  { name: "موريتانيا", slug: "mauritania" },
   { name: "السعودية", slug: "saudi" },
   { name: "الإمارات", slug: "uae" },
   { name: "قطر", slug: "qatar" },
-  { name: "الكويت", slug: "kuwait" },
-  { name: "البحرين", slug: "bahrain" },
-  { name: "عُمان", slug: "oman" },
-  { name: "الأردن", slug: "jordan" },
-  { name: "فلسطين", slug: "palestine", ext: "webp" }, // ✅ you said you have /countries/palestine.webp
-  { name: "لبنان", slug: "lebanon" },
-  { name: "العراق", slug: "iraq" },
-  { name: "اليمن", slug: "yemen" },
-  { name: "سوريا", slug: "syria" },
+  { name: "فلسطين", slug: "palestine" }, // ✅ you said you have /countries/palestine.webp
 ];
 
 /* ================== Exported Section ================== */
@@ -79,7 +66,7 @@ export default function StatsAndCountries({
     <section  className="w-full bg-foreground ">
       {/* ====== KPI GRID (10 cols) ====== */}
       <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl p-4">
-        <h1 className="mb-6 text-2xl font-bold text-main text-center">
+        <h1 className="mb-6 text-4xl font-bold text-main text-center">
           إحصائيات المنصة
         </h1>
         <div className="mb-8 mt-4 grid grid-cols-10 gap-4">
@@ -90,7 +77,7 @@ export default function StatsAndCountries({
       </div>
 
       {/* ====== COUNTRIES MARQUEE ====== */}
-      <h1  className="mb-6 text-2xl font-bold text-main text-center">
+      <h1  className="mb-6 text-4xl font-bold text-main text-center">
           دول عربية مشتركة
         </h1>
       <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl">
@@ -128,7 +115,7 @@ function KpiTile({ item }: { item: KpiItem }) {
           <h4 className="text-3xl font-black text-main">
             {item.value.toLocaleString("en-US")}
           </h4>
-          <p className="whitespace-nowrap font-bold">{item.title}</p>
+          <p className="whitespace-nowrap text-[#124559] font-bold">{item.title}</p>
         </div>
       </div>
     </motion.div>
@@ -203,7 +190,7 @@ function CountryCard({
   // smart extension fallback: try ext -> jpg -> png (or webp -> jpg -> png)
   const order = useMemo(() => (ext ? [ext, "jpg", "png"] : ["webp", "jpg", "png"]), [ext]);
   const [idx, setIdx] = useState(0);
-  const src = `/countries/${slug}.svg`;
+  const src = `/countries/${slug}.png`;
 
   return (
     <div className="relative h-full w-full">
