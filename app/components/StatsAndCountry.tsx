@@ -5,10 +5,10 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import {
   IconMap2,
-  IconBolt,
+  IconShoppingCart,
   IconBuildingFactory,
-  IconMapPin,
-  IconCurrencyDollar,
+  IconBuildings,
+  IconBusinessplan,
 } from "@tabler/icons-react";
 
 
@@ -21,10 +21,10 @@ type KpiItem = {
 
 const KPI_DATA: KpiItem[] = [
   { title: "دولة عربية", value: 21, icon: <IconMap2 className="h-6 w-6" /> },
-  { title: "معادن الطاقة النظيفة", value: 38, icon: <IconBolt className="h-6 w-6" /> },
+  { title:"المنتجات", value: 5321, icon: <IconShoppingCart className="h-6 w-6" /> },
   { title: "المعادن الصناعية", value: 53, icon: <IconBuildingFactory className="h-6 w-6" /> },
-  { title: "موقع / مكمن", value: 5574, icon: <IconMapPin className="h-6 w-6" />, badge: "المتوفر حاليا" },
-  { title: "الفرص الاستثمارية", value: 162, icon: <IconCurrencyDollar className="h-6 w-6" />, badge: "المتاحة حاليا" },
+  { title: "منشأة", value: 5574, icon: <IconBuildings className="h-6 w-6" />, badge: "المتوفر حاليا" },
+  { title: "الفرص الاستثمارية", value: 162, icon: <IconBusinessplan className="h-6 w-6" />, badge: "المتاحة حاليا" },
 ];
 
 
@@ -288,11 +288,11 @@ function CountryCard({
         />
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t " />
 
       <div className="absolute inset-0 flex items-end justify-end">
         <motion.span
-          className="px-3 py-1 rounded-full text-white font-bold text-base md:text-lg backdrop-blur-sm"
+          className="px-3 py-1 rounded-full text-white font-bold text-base md:text-lg "
           initial={{ x: 0, opacity: 0 }}
           whileInView={{ opacity: 1 }}
           animate={{ x: [-8, 8, -8] }}
