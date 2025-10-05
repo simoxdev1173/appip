@@ -52,7 +52,7 @@ const COUNTRIES: CountryItem[] = [
   { name: "السعودية", slug: "saudi" },
   { name: "الإمارات", slug: "uae" },
   { name: "قطر", slug: "qatar" },
-  { name: "فلسطين", slug: "palestine" }, // ✅ you said you have /countries/palestine.webp
+  { name: "فلسطين", slug: "palestine" }, // 
 ];
 
 /* ================== Exported Section ================== */
@@ -216,9 +216,9 @@ function CountryCard({
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 
       {/* Centered name that moves slowly */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-end justify-end">
         <motion.span
-          className="px-3 py-1 rounded-full bg-black/35 text-white font-bold text-base md:text-lg backdrop-blur-sm"
+          className="px-3 py-1 rounded-full  text-white font-bold text-base md:text-lg"
           initial={{ x: 0 }}
           animate={{ x: [-8, 8, -8] }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}

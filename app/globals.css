@@ -30,5 +30,6 @@ body {
   background: var(--background);
   color: white;
   font-family:var(--font-mono);
-  padding: 10px;
+  padding: 5px;
+  
 }
